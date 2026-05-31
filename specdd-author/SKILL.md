@@ -1,12 +1,14 @@
 ---
-name: specdd-refactor
-description: Use when Agent needs to refactor code, tests, docs, specs, or project structure while preserving active SpecDD behavior.
+name: specdd-author
+description: Use when Agent needs to author or revise SpecDD `.sdd` specs in an existing SpecDD project.
 license: Apache-2.0
 ---
 
-# SpecDD Refactor
+# SpecDD Author
 
-Use this skill for structure changes that should not change specified behavior.
+Use this skill to create or improve specs in an existing SpecDD project.
+If `.specdd/bootstrap.md` is missing, use `specdd-adopt` first.
+Do not change implementation files unless the user explicitly asks for implementation work too.
 
 ## Skill Scope
 
@@ -44,18 +46,22 @@ Do not reread an entire chain just because a workflow phase changed. Reopen the 
 
 ## Workflow
 
-1. Identify public contracts, scenarios, invariants, dependencies, and forbidden boundaries.
-2. Confirm write authority for every file that would move or change.
-3. Prefer small mechanical steps with verification between risky changes.
-4. Run baseline checks before refactoring when practical, then rerun after.
+1. Ensure existing ancestor specs for the target area are known before adding new specs; reread the nearest relevant spec when exact wording matters.
+2. Identify the smallest useful spec boundary for the requested authoring work.
+3. When useful and available, consider consulting the `specdd-cli` skill for CLI-assisted spec discovery or linting; read or reread relevant governing specs directly when exact contract text is needed.
+4. Treat the user's explicit request as target scope, then create or edit `.sdd` files only inside authority granted by the active spec chain.
+5. Keep specs short, local, behavioral, and constraint-oriented.
 
-## Refactor Rules
+## Authoring Rules
 
-- Preserve behavior described by active specs.
-- Do not move responsibility across spec boundaries unless the specs or user request require it.
-- Do not widen dependencies or add forbidden imports.
-- Do not rename public symbols, paths, or contracts unless explicitly in scope.
-- Update specs, docs, and tests only when the refactor changes structure they describe.
+- Prefer a root or nearest-area spec before adding narrow child specs.
+- Use path-based ownership and explicit `References`; do not imply authority from similar names or nearby files.
+- Include only sections that add useful local authority, constraints, behavior, tasks, or context.
+- Use `Can modify` or `Owns` to make write authority discoverable.
+- Do not copy the full SpecDD framework rules into project specs.
+- Do not turn uncertain observations into durable contracts.
+- If write authority, ownership, public behavior, or security scope is unclear, stop and ask.
 
-If behavior must change to complete the request, stop treating it as a pure
-refactor and resolve authority for the behavior change.
+## Reporting
+
+Report the bootstrap files and specs used, specs created or changed, intended governing scope, and any unresolved authoring decisions.

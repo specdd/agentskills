@@ -103,7 +103,8 @@ Learn more about the Agent Skills standard at https://agentskills.io/specificati
 
 This distribution includes focused skills for orientation, explanation,
 planning, implementation, review, testing, tracing, documentation, refactoring,
-debugging, risk assessment, task handling, and SpecDD adoption work.
+debugging, risk assessment, task handling, SpecDD adoption, spec authoring, and
+CLI-assisted SpecDD work.
 
 The skills do not replace the `specdd` CLI, install SpecDD framework files, or
 make this repository authoritative for your project. They are behavior guidance
